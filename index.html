@@ -80,23 +80,40 @@ body {
 
 <div class="header">
   <h2>vIOMMU Wiki</h2>
+  <img src="https://images.unsplash.com/photo-1481622254766-0f0a35bf6e77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
 </div>
 
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
+      <h2>IOMMU Introduction</h2>
+      <h5>Title description, Apri 27, 2019</h5>
       <img src="https://images.unsplash.com/photo-1481622254766-0f0a35bf6e77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
-      <p>Some text..</p>
-      <p>LLLLLL Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p>IOMMU is I/O Memory Management Unit, which is used to do DMA address translation. Similar with what memory management unit does. IOMMU brings in I/O Virtual Address (IOVA) in DMA transactions. With IOMMU, system is well protected. Most hardware vendors have made IOMMU as a key feature on ther platform. E.g. Intel® Virtualization Technology (Intel® VT) for Directed I/O (Intel® VT-d). Per the latest Intel® VT-d 3.0 specification, it provides the following features: <br/></p>
+      <p>	- DMA remapping<br/>
+      	- Interrupt remapping<br/>
+        - Interrupt posting<br/>
+        - Shared Virtual Memory<br/>
+        - x2apic<br/>
+        - Scalable IOV<br/></p>
     </div>
     <div class="card">
+      <h2>Industry Trend</h2>
+      <h5>Title description, April 28, 2019</h5>
+      <img src="https://images.unsplash.com/photo-1540829917886-91ab031b1764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
+      <p>Scalable I/O Virtualization</p>
+      <p>It's a new hardware assisted I/O virtualization architecture published by Intel in June 2018. Kevin Tian (Principal Engineer from Intel) gave an <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf
+">introduction</a> on it at the Linux Conference Beijing 2018 happend in the same month. 
+      - Sunt in<br/>
+      - culpa<br/>
+      - qui officia'\n'deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+        <div class="card">
       <h2>TITLE HEADING</h2>
       <h5>Title description, Sep 2, 2017</h5>
       <img src="https://images.unsplash.com/photo-1540829917886-91ab031b1764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
       <p>Some text..</p>
-      <p>Liuyi
+      <p>LiuYi
       - Sunt in<br/>
       - culpa<br/>
       - qui officia'\n'deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
@@ -106,7 +123,7 @@ body {
     <div class="card">
       <h2>About Me</h2>
       <img src="https://lh3.googleusercontent.com/hZ70PfTUHlXMHZYCrza2-zAhDLY_kJkg8RaugaAxUSJWH7JXTbUIMj4peyW2AHIluE0PS3cF-WP8DfLRAtDAJoErX5GkZUeRjpr2IdhWoEUmKu_8XNvAekHHGU6Q5jvjozd9Ss2pw-pd727bfxWcWnaGciEoQIPMccpfBScv41gv1KkTYLonaqs0r5VrCLVLb7z1eEzDIUUdv-NIj3mrag9tYqgaQqaCtjh-MtUenP5UXP_9qF55ZnLA_0KVCos966VSWWVOjvlZWtQY5whmgc5TIXfUSW3OvuWEsFHAJrG0ZYDREbRxTmYp5X2_6G09iQOZ9NGnveJvhsiqSXUDMyhoz93HzKfB1VMkBXf4GBWZXp2nbW6BGMAtMgMGpzMHFlwhVhRKBtoNZThiCS2_RhqMTZuj9x34gHHW_z3FffEZNzN6tIHJfCSL7GVALIVc46sor6lQ48URsgypETrlOvaeeWN0QBfMnaZ3ijCDo5YGO7CP3pYiQIC7qzAHKkMiRt5dcFrvHWdjJkLwgLPqYTVszQCQ4_k8pTdK-lAitoohzWvn7RrkSNHjOAlTlWVDsurLRlUhWEenSC3oWdePdpygxmeQi5xRekjzLXzZABnBi4qMNIp0pQ8COSePwx-N_nbHyiwZVo2PmWZ2e5PNLwZW5dNDjw=s511-no" alt="LiUUU" width="20%" height="20%"/>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <p>I'm a software engineer from SSP, Intel Corp. focus on I/O virtualization(Intel® VT-d) and new I/O technology researching and enabling. Currently working on virtual IOMMU upstreaming within Intel SSP VMM enabling team. Prior to Intel, I was a firmware engineer at Hewlett-Packard Company.</p>
     </div>
     <div class="card">
       <h3>Popular Post</h3>
