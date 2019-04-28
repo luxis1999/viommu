@@ -80,6 +80,7 @@ body {
 
 <div class="header">
   <h2>vIOMMU Wiki</h2>
+  <h5>Written by Yi Liu, Apri 27, 2019</h5>
   <img src="https://images.unsplash.com/photo-1481622254766-0f0a35bf6e77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
 </div>
 
@@ -87,58 +88,56 @@ body {
   <div class="leftcolumn">
     <div class="card">
       <h2>IOMMU Introduction</h2>
-      <h5>Title description, Apri 27, 2019</h5>
       <p>IOMMU is I/O Memory Management Unit, which is used to do DMA address translation. Similar with what memory management unit does. IOMMU brings in I/O Virtual Address (IOVA) in DMA transactions. With IOMMU, system is well protected. Most hardware vendors have made IOMMU as a key feature on ther platform. E.g. Intel® Virtualization Technology (Intel® VT) for Directed I/O (Intel® VT-d). Per the latest Intel® VT-d 3.0 specification, it provides the following features: <br/></p>
-      <p>	- DMA remapping (DMA isolation)<br/>
-      	- Interrupt remapping (interrupt isolation)<br/>
-        - Interrupt posting (efficient interrupt injection)<br/>
-        - Shared Virtual Memory (efficient worload submission)<br/>
-        - x2apic (> 255 CPU support)<br/>
-        - Scalable IOV (scalable & efficient I/O sharing)<br/></p>
+      <p>	<p style="text-indent: 2em">- DMA remapping (DMA isolation)<br/>
+      	<p style="text-indent: 2em">- Interrupt remapping (interrupt isolation)<br/>
+        <p style="text-indent: 2em">- Interrupt posting (efficient interrupt injection)<br/>
+        <p style="text-indent: 2em">- Shared Virtual Memory (efficient worload submission)<br/>
+        <p style="text-indent: 2em">- x2apic (> 255 CPU support)<br/>
+        <p style="text-indent: 2em">- Scalable IOV (scalable & efficient I/O sharing)<br/></p>
     </div>
     <div class="card">
       <h2>Industry Trend</h2>
-      <h5>Title description, April 28, 2019</h5>
       <p><b>Scalable I/O Virtualization</b><br>Scalable IOV (S-IOV) a new hardware assisted I/O virtualization architecture published by Intel in June 2018. Kevin Tian (Principal Engineer from Intel) gave an <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf
 ">introduction</a> on it at the Linux Conference Beijing 2018 happened in the same month. With extensions in hardware and software, this architecture gives efficient and scalable I/O sharing to meet hyperscale I/O sharing requirement in cloud computing.</p>
       <p><b>Device Assignment</b><br>Device assignment is a capability provided by IOMMU. It gives direct access of physical device to userspace applications (e.g. userspace device driver and device emulation (Qemu)). In virtualization environment, it gives bare-metal I/O peformance. In recent years, it is more and more popular to use device assignment in cloud.<br/>
-      - For one, emering accelerators (GPU, FPGA, NVMe, QAT) are hard to emulate with good perfomance<br>
-      - For two, more and more I/O device offloading done by assignment in CSP<br>
-      - For three, Scalable IOV (S-IOV) providescalable resource pool with lower cost than former SR-IOV<br></p>
+      <p style="text-indent: 2em">- For one, emering accelerators (GPU, FPGA, NVMe, QAT) are hard to emulate with good perfomance<br>
+      <p style="text-indent: 2em">- For two, more and more I/O device offloading done by assignment in CSP<br>
+      <p style="text-indent: 2em">- For three, Scalable IOV (S-IOV) providescalable resource pool with lower cost than former SR-IOV<br></p>
 <p> No doubt, with the techonlogy evolution, I/O assignment is not that costing as before. Then people may be more curious on the usage after assignment</p>
     </div>
         <div class="card">
       <h2>vIOMMU</h2>
-      <h5>Title description, April 28, 2019</h5>
       <p>As mentioned above, industry is more and more care about the things after device assignment. e.g. is it secure to run userspace driver in guest or if it is able to apply SVM programming model.. Of course, answer is yes as long as VMM (Virtual Machine Monitor) exposes a Virtual IOMMU (vIOMMU) to guest.</p>
       <p>With vIOMMU exposed to guest, guest can ideally benifit from all the aforementioned IOMMU features. Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
-      - guest IOVA (DMA isolation)<br/>
+      <p style="text-indent: 2em">- guest IOVA (DMA isolation)<br/>
+      <p style="text-indent: 4em">Latest Scalable Mode support since Linux kernel 5.0, Qemu v4.0.0-rc4<br/>
       
-      - guest SVM (efficient workload submission)
+      <p style="text-indent: 2em">- guest SVM (efficient workload submission)<br/>
+      <p style="text-indent: 4em">In progress (Jacob Pan and Yi Liu)<br/>
+      <p style="text-indent: 4em">https://lkml.org/lkml/2019/4/23/1166<br/>
       </p>
     </div>
     <div class="card">
       <h2>Try vIOMMU</h2>
-      <h5>Title description, April 28, 2019</h5>
       <p>Take Intel VT-d as an example, so far user can expose guest IOVA to VM. Guest SVM support is in progress.</p>
       <p><b>Device assignment via VFIO</b></p>
-      1) Load VFIO driver<br/>
-        sudo modprobe vfio<br/>
-        modprobe vfio-pci<br/>
-      2) Bind device to vfio-pci driver<br/>
-        echo sgement_id:bus_id:devn_id.func_id > /sys/bus/pci/devices/sgement_id:bus_id:devn_id.func_id/driver/unbind<br/>
-        echo vendor_id device_id > /sys/bus/pci/drivers/vfio-pci/new_id<br/>
-      3) assign device to VM<br/>
-        "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
+      <p style="text-indent: 2em">1) Load VFIO driver<br/>
+      <p style="text-indent: 4em">  $ sudo modprobe vfio<br/>
+      <p style="text-indent: 4em">  $ sudo modprobe vfio-pci<br/>
+      <p style="text-indent: 2em">2) Bind device to vfio-pci driver<br/>
+      <p style="text-indent: 4em">  $ echo sgement_id:bus_id:devn_id.func_id > /sys/bus/pci/devices/sgement_id:bus_id:devn_id.func_id/driver/unbind<br/>
+      <p style="text-indent: 4em">  $ echo vendor_id device_id > /sys/bus/pci/drivers/vfio-pci/new_id<br/>
+      <p style="text-indent: 2em">3) assign device to VM<br/>
+      <p style="text-indent: 4em">  "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
       <p><b>Device assignment with vIOMMU</b></p>
-        Use the following command in Qemu command line (with strict order)<br/>
-        "intel-iommu,caching-mode=on,scalable-mode=on"<br/>
-        "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
+      <p style="text-indent: 2em">Use the following command in Qemu command line (with strict order)<br/>
+      <p style="text-indent: 4em">  "intel-iommu,caching-mode=on,scalable-mode=on"<br/>
+      <p style="text-indent: 4em">  "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
       </p>
     </div>
     <div class="card">
       <h2>References</h2>
-      <h5>Title description, April 28, 2019</h5>
       <p>
       [1] <a href=" https://en.wikipedia.org/wiki/Input%E2%80%93output_memory_management_unit
 ">IOMMU wiki page</a><br/>
@@ -150,6 +149,7 @@ body {
       [6] <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf">LC3: Scalable IO Virtualization</a><br/>
       [7] <a href=" https://01.org/blogs/ashokraj/2018/recent-enhancements-intel-virtualization-technology-directed-i/o-intel-vt-d">RECENT ENHANCEMENTS IN INTEL® VIRTUALIZATION TECHNOLOGY FOR DIRECTED I/O (INTEL® VT-D)</a><br/>
       [8] <a href=" https://software.intel.com/sites/default/files/managed/cc/0e/intel-scalable-io-virtualization-technical-specification.pdf">Intel Scalable IOV technical specification</a><br/>
+      [9] <a href=" https://www.kernel.org/doc/Documentation/vfio.txt">VFIO.txt</a><br/>
 
       </p>
     </div>
