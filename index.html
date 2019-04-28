@@ -88,33 +88,33 @@ body {
   <div class="leftcolumn">
     <div class="card">
       <h2>IOMMU Introduction</h2>
-      <p>IOMMU is I/O Memory Management Unit, which is used to do DMA address translation. Similar with what memory management unit does. IOMMU brings in I/O Virtual Address (IOVA) in DMA transactions. With IOMMU, system is well protected. Most hardware vendors have made IOMMU as a key feature on ther platform. E.g. Intel® Virtualization Technology (Intel® VT) for Directed I/O (Intel® VT-d). Per the latest Intel® VT-d 3.0 specification, it provides the following features: <br/></p>
+      <p>IOMMU is I/O Memory Management Unit, which is used to do DMA address translation. Similar with what memory management unit does. IOMMU brings in I/O Virtual Address (IOVA) in DMA transactions. With IOMMU, system is well protected. Most hardware vendors have made IOMMU as a key feature on their platform. E.g. Intel® Virtualization Technology (Intel® VT) for Directed I/O (Intel® VT-d). Per the latest Intel® VT-d 3.0 specification, it provides the following features: <br/></p>
       <p>	<p style="text-indent: 2em">- DMA remapping (DMA isolation)<br/>
       	<p style="text-indent: 2em">- Interrupt remapping (interrupt isolation)<br/>
         <p style="text-indent: 2em">- Interrupt posting (efficient interrupt injection)<br/>
-        <p style="text-indent: 2em">- Shared Virtual Memory (efficient worload submission)<br/>
+        <p style="text-indent: 2em">- Shared Virtual Memory (efficient workload submission)<br/>
         <p style="text-indent: 2em">- x2apic (> 255 CPU support)<br/>
         <p style="text-indent: 2em">- Scalable IOV (scalable & efficient I/O sharing)<br/></p>
     </div>
     <div class="card">
       <h2>Industry Trend</h2>
       <p><b>Scalable I/O Virtualization</b><br>Scalable IOV (S-IOV) a new hardware assisted I/O virtualization architecture published by Intel in June 2018. Kevin Tian (Principal Engineer from Intel) gave an <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf
-">introduction</a> on it at the Linux Conference Beijing 2018 happened in the same month. With extensions in hardware and software, this architecture gives efficient and scalable I/O sharing to meet hyperscale I/O sharing requirement in cloud computing.</p>
-      <p><b>Device Assignment</b><br>Device assignment is a capability provided by IOMMU. It gives direct access of physical device to userspace applications (e.g. userspace device driver and device emulation (Qemu)). In virtualization environment, it gives bare-metal I/O peformance. In recent years, it is more and more popular to use device assignment in cloud.<br/>
-      <p style="text-indent: 2em">- For one, emering accelerators (GPU, FPGA, NVMe, QAT) are hard to emulate with good perfomance<br>
+">introduction</a> on it at the Linux Conference Beijing 2018 happened in the same month. With extensions in hardware and software, this architecture gives efficient and scalable I/O sharing to meet hyper-scale I/O sharing requirement in cloud computing.</p>
+      <p><b>Device Assignment</b><br>Device assignment is a capability provided by IOMMU. It gives direct access of physical device to userspace applications (e.g. userspace device driver and device emulation (Qemu)). In virtualization environment, it gives bare-metal I/O performance. In recent years, it is more and more popular to use device assignment in cloud.<br/>
+      <p style="text-indent: 2em">- For one, emerging accelerators (GPU, FPGA, NVMe, QAT) are difficult to emulate with good performance<br>
       <p style="text-indent: 2em">- For two, more and more I/O device offloading done by assignment in CSP<br>
-      <p style="text-indent: 2em">- For three, Scalable IOV (S-IOV) providescalable resource pool with lower cost than former SR-IOV<br></p>
-<p> No doubt, with the techonlogy evolution, I/O assignment is not that costing as before. Then people may be more curious on the usage after assignment</p>
+      <p style="text-indent: 2em">- For three, Scalable IOV (S-IOV) provides scalable resource pool with lower cost than former SR-IOV<br></p>
+<p> Doubtless, with the technology evolution, I/O assignment is not that costing as before. Then people may be more curious on the advanced usage with device assignment.</p>
     </div>
         <div class="card">
       <h2>vIOMMU</h2>
       <p>As mentioned above, industry is more and more care about the things after device assignment. e.g. is it secure to run userspace driver in guest or if it is able to apply SVM programming model.. Of course, answer is yes as long as VMM (Virtual Machine Monitor) exposes a Virtual IOMMU (vIOMMU) to guest.</p>
-      <p>With vIOMMU exposed to guest, guest can ideally benifit from all the aforementioned IOMMU features. Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
+      <p>With vIOMMU exposed to guest, guest can ideally benefit from all the aforementioned IOMMU features. Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
       <p style="text-indent: 2em">- guest IOVA (DMA isolation)<br/>
-      <p style="text-indent: 4em">Latest Scalable Mode support since Linux kernel 5.0, Qemu v4.0.0-rc4<br/>
+      <p style="text-indent: 4em">Latest Scalable Mode VT-d support since Linux kernel 5.0, Qemu v4.0.0-rc4<br/>
       
       <p style="text-indent: 2em">- guest SVM (efficient workload submission)<br/>
-      <p style="text-indent: 4em">In progress (Jacob Pan and Yi Liu)<br/>
+      <p style="text-indent: 4em">In progress (Jacob Pan and Yi Liu), community discussion can be found in below link<br/>
       <p style="text-indent: 4em">https://lkml.org/lkml/2019/4/23/1166<br/>
       </p>
     </div>
@@ -135,6 +135,7 @@ body {
       <p style="text-indent: 4em">  "intel-iommu,caching-mode=on,scalable-mode=on"<br/>
       <p style="text-indent: 4em">  "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
       </p>
+      <p>If any further question on the usage or the implementation, please feel free contacting me.
     </div>
     <div class="card">
       <h2>References</h2>
