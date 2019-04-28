@@ -88,35 +88,61 @@ body {
     <div class="card">
       <h2>IOMMU Introduction</h2>
       <h5>Title description, Apri 27, 2019</h5>
-      <img src="https://images.unsplash.com/photo-1481622254766-0f0a35bf6e77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
       <p>IOMMU is I/O Memory Management Unit, which is used to do DMA address translation. Similar with what memory management unit does. IOMMU brings in I/O Virtual Address (IOVA) in DMA transactions. With IOMMU, system is well protected. Most hardware vendors have made IOMMU as a key feature on ther platform. E.g. Intel® Virtualization Technology (Intel® VT) for Directed I/O (Intel® VT-d). Per the latest Intel® VT-d 3.0 specification, it provides the following features: <br/></p>
-      <p>	- DMA remapping<br/>
-      	- Interrupt remapping<br/>
-        - Interrupt posting<br/>
-        - Shared Virtual Memory<br/>
-        - x2apic<br/>
-        - Scalable IOV<br/></p>
+      <p>	- DMA remapping (DMA isolation)<br/>
+      	- Interrupt remapping (interrupt isolation)<br/>
+        - Interrupt posting (efficient interrupt injection)<br/>
+        - Shared Virtual Memory (efficient worload submission)<br/>
+        - x2apic (> 255 CPU support)<br/>
+        - Scalable IOV (scalable & efficient I/O sharing)<br/></p>
     </div>
     <div class="card">
       <h2>Industry Trend</h2>
       <h5>Title description, April 28, 2019</h5>
-      <img src="https://images.unsplash.com/photo-1540829917886-91ab031b1764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
-      <p>Scalable I/O Virtualization</p>
-      <p>It's a new hardware assisted I/O virtualization architecture published by Intel in June 2018. Kevin Tian (Principal Engineer from Intel) gave an <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf
-">introduction</a> on it at the Linux Conference Beijing 2018 happend in the same month. 
-      - Sunt in<br/>
-      - culpa<br/>
-      - qui officia'\n'deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <p><b>Scalable I/O Virtualization</b><br>Scalable IOV (S-IOV) a new hardware assisted I/O virtualization architecture published by Intel in June 2018. Kevin Tian (Principal Engineer from Intel) gave an <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf
+">introduction</a> on it at the Linux Conference Beijing 2018 happened in the same month. With extensions in hardware and software, this architecture gives efficient and scalable I/O sharing to meet hyperscale I/O sharing requirement in cloud computing.</p>
+      <p><b>Device Assignment</b><br>Device assignment is a capability provided by IOMMU. It gives direct access of physical device to userspace applications (e.g. userspace device driver and device emulation (Qemu)). In virtualization environment, it gives bare-metal I/O peformance. In recent years, it is more and more popular to use device assignment in cloud.<br/>
+      - For one, emering accelerators (GPU, FPGA, NVMe, QAT) are hard to emulate with good perfomance<br>
+      - For two, more and more I/O device offloading done by assignment in CSP<br>
+      - For three, Scalable IOV (S-IOV) providescalable resource pool with lower cost than former SR-IOV<br></p>
+<p> No doubt, with the techonlogy evolution, I/O assignment is not that costing as before. Then people may be more curious on the usage after assignment</p>
     </div>
         <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <img src="https://images.unsplash.com/photo-1540829917886-91ab031b1764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="LiUUU" width="%20" height="20%"/>
-      <p>Some text..</p>
-      <p>LiuYi
-      - Sunt in<br/>
-      - culpa<br/>
-      - qui officia'\n'deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+      <h2>vIOMMU</h2>
+      <h5>Title description, April 28, 2019</h5>
+      <p>As mentioned above, industry is more and more care about the things after device assignment. e.g. is it secure to run userspace driver in guest or if it is able to apply SVM programming model.. Of course, answer is yes as long as VMM (Virtual Machine Monitor) exposes a Virtual IOMMU (vIOMMU) to guest.</p>
+      <p>With vIOMMU exposed to guest, guest can ideally benifit from all the aforementioned IOMMU features. Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
+      - guest IOVA (DMA isolation)<br/>
+      
+      - guest SVM (efficient workload submission)
+      </p>
+    </div>
+    <div class="card">
+      <h2>Try vIOMMU</h2>
+      <h5>Title description, April 28, 2019</h5>
+      <p>Take Intel VT-d as an example, so far user can have guest IOVA exposed to VM.</p>
+      <p>With vIOMMU exposed to guest, guest can ideally benifit from all the aforementioned IOMMU features.<br/> Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
+      - guest IOVA (DMA isolation)<br/>
+      
+      - guest SVM (efficient workload submission)
+      </p>
+    </div>
+    <div class="card">
+      <h2>References</h2>
+      <h5>Title description, April 28, 2019</h5>
+      <p>
+      [1] <a href=" https://en.wikipedia.org/wiki/Input%E2%80%93output_memory_management_unit
+">IOMMU wiki page</a><br/>
+      [2] <a href=" http://www.lttconn.com/res/lttconn/pdres/201402/20140218105502619.pdf">PCI® Express Specification</a><br/>
+      [3] <a href= "https://software.intel.com/sites/default/files/managed/c5/15/vt-directed-io-spec.pdf">Intel® VT-d specification</a><br/>
+      [4] <a href=" https://www.linux-kvm.org/page/File:01x04-Alex_Williamson-An_Introduction_to_PCI_Device_Assignment_with_VFIO.pdf
+">An Introduction to PCI Device Assignment with VFIO.pdf</a><br/>
+      [5] <a href=" https://software.intel.com/en-us/blogs/2018/06/25/introducing-intel-scalable-io-virtualization">Introducing-intel-scalable-io-virtualization</a><br/>
+      [6] <a href=" https://www.lfasiallc.com/wp-content/uploads/2017/11/Intel%C2%AE-Scalable-I_O-Virtualization_Kevin-Tian.pdf">LC3: Scalable IO Virtualization</a><br/>
+      [7] <a href=" https://01.org/blogs/ashokraj/2018/recent-enhancements-intel-virtualization-technology-directed-i/o-intel-vt-d">RECENT ENHANCEMENTS IN INTEL® VIRTUALIZATION TECHNOLOGY FOR DIRECTED I/O (INTEL® VT-D)</a><br/>
+      [8] <a href=" https://software.intel.com/sites/default/files/managed/cc/0e/intel-scalable-io-virtualization-technical-specification.pdf">Intel Scalable IOV technical specification</a><br/>
+
+      </p>
     </div>
   </div>
   <div class="rightcolumn">
@@ -126,20 +152,13 @@ body {
       <p>I'm a software engineer from SSP, Intel Corp. focus on I/O virtualization(Intel® VT-d) and new I/O technology researching and enabling. Currently working on virtual IOMMU upstreaming within Intel SSP VMM enabling team. Prior to Intel, I was a firmware engineer at Hewlett-Packard Company.</p>
     </div>
     <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
+      <h3>Contact Me</h3>
+      <p>Email: yi.l.liu@intel.com</p>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <h2>Footer</h2>
 </div>
 
 </body>
