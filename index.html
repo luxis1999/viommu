@@ -121,10 +121,19 @@ body {
       <h2>Try vIOMMU</h2>
       <h5>Title description, April 28, 2019</h5>
       <p>Take Intel VT-d as an example, so far user can have guest IOVA exposed to VM.</p>
-      <p>With vIOMMU exposed to guest, guest can ideally benifit from all the aforementioned IOMMU features.<br/> Let's talk about DMA remapping and SVM. As these two features give guest secure and efficient device usage.<br/>
-      - guest IOVA (DMA isolation)<br/>
-      
-      - guest SVM (efficient workload submission)
+      <p><b>Device assignment via VFIO</b></p>
+      1) Load VFIO driver<br/>
+        sudo modprobe vfio<br/>
+        modprobe vfio-pci<br/>
+      2) Bind device to vfio-pci driver<br/>
+        echo sgement_id:bus_id:devn_id.func_id > /sys/bus/pci/devices/sgement_id:bus_id:devn_id.func_id/driver/unbind<br/>
+        echo vendor_id device_id > /sys/bus/pci/drivers/vfio-pci/new_id<br/>
+      3) assign device to VM<br/>
+        "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
+      <p><b>Device assignment with vIOMMU</b></p>
+        Use the following command in Qemu command line (with strict order)<br/>
+        "intel-iommu,caching-mode=on,scalable-mode=on"<br/>
+        "-device vfio-pci,host=bus_id:devn_id.func_id"<br/>
       </p>
     </div>
     <div class="card">
